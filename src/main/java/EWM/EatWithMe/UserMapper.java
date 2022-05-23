@@ -1,11 +1,14 @@
 package EWM.EatWithMe;
 
+import EWM.EatWithMe.Domain.Userdata;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface UserMapper {
+
+    void saveUser(Userdata userdata);
 
     @Insert("INSERT INTO userdata(user_id, user_name, user_pw, school, google_id) VALUES(#{userdata.id}, #{userdata.name}, #{userdata.pw}, #{userdata.school}, #{userdata.googleId})")
     //@Options(useGeneratedKeys = true, keyProperty = "idx")
