@@ -35,9 +35,12 @@ public class userService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         //여기서 받은 유저 패스워드와 비교하여서 로그인 인증
-        Userdata userdata = userMapper.getUserAccount(username);
-
+        Userdata userdata = userMapper.getUserAccount(id);
+        if (userdata == null) {
+            throw new UsernameNotFoundException("User not authorized");
+        }
+        return userdata;
     }
 }

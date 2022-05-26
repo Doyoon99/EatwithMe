@@ -30,10 +30,10 @@ public class Userdata implements UserDetails {
         return this.pw;
     }
 
-    //security의 name
+    //security의 id
     @Override
     public String getUsername() {
-        return this.name;
+        return this.id;
     }
 
     //Userdata의 name
@@ -60,6 +60,4 @@ public class Userdata implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
 }
