@@ -43,6 +43,8 @@ public interface UserMapper {
     @ResultMap("UserMap")
     Userdata getById(@Param("user_id") int id);
 
+    Userdata getUserAccount(String name);
+
     void saveUser(Userdata userdata);
 
 }
