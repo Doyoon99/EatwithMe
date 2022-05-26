@@ -1,4 +1,4 @@
-package EWM.EatWithMe;
+package EWM.EatWithMe.domain;
 
 import lombok.Data;
 
@@ -10,4 +10,7 @@ public class Userdata {
     private String pw;
     private String school;
     private String googleId;
+    private String userAuth;
+    private String appendDate;
+    private String updateDate;
 }

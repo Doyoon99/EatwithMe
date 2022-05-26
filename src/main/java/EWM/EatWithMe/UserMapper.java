@@ -1,5 +1,6 @@
 package EWM.EatWithMe;
 
+import EWM.EatWithMe.domain.Userdata;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Insert("INSERT INTO userdata(user_id, user_name, user_pw, school, google_id) VALUES(#{userdata.id}, #{userdata.name}, #{userdata.pw}, #{userdata.school}, #{userdata.googleId})")
+    @Insert("INSERT INTO userdata(user_id, user_name, user_pw, school, google_id, USER_AUTH, APPEND_DATE, UPDATE_DATE) VALUES(#{userdata.id}, #{userdata.name}, #{userdata.pw}, #{userdata.school}, #{userdata.googleId}, #{userdata.USER_AUTH}, #{userdata.APPEND_DATE}, #{userdata.UPDATE_DATE})")
     //@Options(useGeneratedKeys = true, keyProperty = "idx")
     int insert(@Param("userdata") Userdata userdata);
     // sql insert 구문은 입력이 성공하면 입력된 데이터의 개수를 반환한다.
@@ -26,7 +27,10 @@ public interface UserMapper {
             @Result(property = "name", column = "user_name"),
             @Result(property = "pw", column = "user_pw"),
             @Result(property = "school", column = "school"),
-            @Result(property = "googleId", column = "google_id")
+            @Result(property = "googleId", column = "google_id"),
+            @Result(property = "userAuth", column = "USER_AUTH"),
+            @Result(property = "appendDate", column = "APPEND_DATE"),
+            @Result(property = "updateDate", column = "UPDATE_DATE")
     })
 
     List<Userdata> getAll();
@@ -38,5 +42,7 @@ public interface UserMapper {
     @Select("SELECT * FROM userdata WHERE user_id=#{user_id}")
     @ResultMap("UserMap")
     Userdata getById(@Param("user_id") int id);
+
+    void saveUser(Userdata userdata);
 
 }
