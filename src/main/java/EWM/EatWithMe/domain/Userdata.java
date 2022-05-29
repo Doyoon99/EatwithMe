@@ -20,6 +20,16 @@ public class Userdata implements UserDetails {
     private String appendDate;
     private String updateDate;
 
+    public Userdata() {
+        this.school = "";
+        this.googleId = "";
+    }
+
+    public Userdata(String id, String pw) {
+        this.id = id;
+        this.pw = pw;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(this.userAuth));
@@ -59,5 +69,65 @@ public class Userdata implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
+    public String getUserAuth() {
+        return userAuth;
+    }
+
+    public void setUserAuth(String userAuth) {
+        this.userAuth = userAuth;
+    }
+
+    public String getAppendDate() {
+        return appendDate;
+    }
+
+    public void setAppendDate(String appendDate) {
+        this.appendDate = appendDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 }

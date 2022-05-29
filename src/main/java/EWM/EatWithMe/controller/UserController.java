@@ -1,6 +1,7 @@
-package EWM.EatWithMe;
+package EWM.EatWithMe.controller;
 
 
+import EWM.EatWithMe.mapper.UserMapper;
 import EWM.EatWithMe.domain.Userdata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

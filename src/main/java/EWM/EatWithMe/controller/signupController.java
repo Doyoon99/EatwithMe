@@ -5,10 +5,13 @@ import EWM.EatWithMe.service.userService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Controller
 public class signupController {
     @Autowired
     userService userService;
@@ -19,16 +22,26 @@ public class signupController {
         return "redirect:/login";
     }
 
+    @GetMapping("/")
+    public String home(){
+        return "signup";
+    }
+
+    //회원가입 폼
+    @GetMapping("/signup")
+    public String signUpForm() {
+        return "signup";
+    }
+
     //login 폼
     @GetMapping("/login")
     public String login(){
         return "login";
     }
 
-    //회원가입 폼
-    @GetMapping("/signUp")
-    public String signUpForm() {
-        return "signup";
+    @PostMapping("/login_proc")
+    public String loginAccess(Userdata userdata) {
+        return "redirect:/user_access";
     }
 
     //로그인 실패 폼
@@ -38,7 +51,7 @@ public class signupController {
     }
 
     //회원가입 진행
-    @PostMapping("/signUp")
+    @PostMapping("/signup")
     public String signUp(Userdata userdata) {
         userService.joinUser(userdata);
         return "redirect:/login";

@@ -1,4 +1,4 @@
-package EWM.EatWithMe;
+package EWM.EatWithMe.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

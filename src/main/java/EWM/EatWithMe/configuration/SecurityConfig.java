@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/login", "/signUp", "/accss_denied", "resources/**").permitAll()
+                    .antMatchers("/signUp", "/login", "/accss_denied", "resources/**").permitAll()
                     .antMatchers("/userAccess").hasRole("USER")
                     .antMatchers("/userAccess").hasRole("ADMIN")
                     .and()
@@ -27,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/login_proc")
+                    .usernameParameter("username") // 아이디 파라미터명 설정, default: username
+                    .passwordParameter("password") // 패스워드 파라미터명 설정, default: password
                     .defaultSuccessUrl("/user_access")
                     .failureUrl("/access_denied")
                     .and()
