@@ -21,8 +21,6 @@ public class Userdata implements UserDetails {
     private String updateDate;
 
     public Userdata() {
-        this.school = "";
-        this.googleId = "";
     }
 
     public Userdata(String id, String pw) {

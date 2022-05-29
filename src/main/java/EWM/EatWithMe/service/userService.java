@@ -31,6 +31,8 @@ public class userService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         userdata.setPw((passwordEncoder.encode(userdata.getPw())));
         userdata.setUserAuth("USER");
+        userdata.setGoogleId(userdata.getId());
+        userdata.setSchool(userdata.getId());
         userdata.setAppendDate(localTime);
         userdata.setUpdateDate(localTime);
 //        userMapper.saveUser(userdata);
@@ -45,7 +47,7 @@ public class userService implements UserDetailsService {
         if (useraccount == null) {
             throw new UsernameNotFoundException("User not authorized");
         }
-        System.out.println(useraccount.getId());
+//        System.out.println(useraccount.getId());
 
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //        !passwordEncoder.encode(userdata.getPw()).equals(useraccount.getPassword()) {
