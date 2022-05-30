@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface PromiseinfoMapper {
-    @Insert("INSERT INTO promiseinfo(promise_id, promise_date, minpers, maxpers, starttime, endtime, title, detail, approve) VALUES(#{promiseinfo.promise_id}, #{promiseinfo.promise_date}, #{promiseinfo.minpers}, #{promiseinfo.maxpers}, #{promiseinfo.starttime}, #{promiseinfo.endtime}, #{promiseinfo.title}, #{promiseinfo.detail}, #{promiseinfo.approve})")
+    @Insert("INSERT INTO promiseinfo(promise_id, promise_date, minpers, maxpers, starttime, endtime, title, detail, approve) VALUES(#{promiseinfo.id}, #{promiseinfo.date}, #{promiseinfo.min}, #{promiseinfo.max}, #{promiseinfo.start}, #{promiseinfo.end}, #{promiseinfo.title}, #{promiseinfo.detail}, #{promiseinfo.approve})")
     int insert(@Param("promiseinfo") Promiseinfodata promiseinfodata);
 
     @Select("SELECT * FROM promiseinfo")
@@ -24,9 +24,9 @@ public interface PromiseinfoMapper {
             @Result(property = "detail", column = "detail"),
             @Result(property = "approve", column = "approve")
     })
-    List<Storedata> getAll();
+    List<Promiseinfodata> getAll();
 
-    @Select("SELECT * FROM promiseinfo WHERE promise_id=#{promise_id}")
+    @Select("SELECT * FROM promiseinfo WHERE id=#{id}")
     @ResultMap("PromiseinfoMap")
-    Storedata getById(@Param("promise_id") int id);
+    Promiseinfodata getById(@Param("id") int id);
 }
