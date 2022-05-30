@@ -1,7 +1,6 @@
 package EWM.EatWithMe.mapper;
 
 import EWM.EatWithMe.domain.Promiseinfodata;
-import EWM.EatWithMe.domain.Storedata;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public interface PromiseinfoMapper {
 
     @Select("SELECT * FROM promiseinfo")
 
-    @Results(id = "StoreMap", value = {
+    @Results(id = "PromiseinfoMap", value = {
             @Result(property = "id", column = "promise_id"),
             @Result(property = "date", column = "promise_date"),
             @Result(property = "min", column = "minpers"),
@@ -24,9 +23,9 @@ public interface PromiseinfoMapper {
             @Result(property = "detail", column = "detail"),
             @Result(property = "approve", column = "approve")
     })
-    List<Storedata> getAll();
+    List<Promiseinfodata> getAll();
 
-    @Select("SELECT * FROM store WHERE promise_id=#{promise_id}")
+    @Select("SELECT * FROM promiseinfo WHERE promise_id=#{promise_id}")
     @ResultMap("PromiseinfoMap")
-    Storedata getById(@Param("promise_id") int id);
+    Promiseinfodata getById(@Param("promise_id") int id);
 }
