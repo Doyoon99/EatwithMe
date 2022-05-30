@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface PromiseinfoMapper {
     @Insert("INSERT INTO promiseinfo(promise_id, promise_date, minpers, maxpers, starttime, endtime, title, detail, approve) VALUES(#{promiseinfo.id}, #{promiseinfo.date}, #{promiseinfo.min}, #{promiseinfo.max}, #{promiseinfo.start}, #{promiseinfo.end}, #{promiseinfo.title}, #{promiseinfo.detail}, #{promiseinfo.approve})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(@Param("promiseinfo") Promiseinfodata promiseinfodata);
 
     @Select("SELECT * FROM promiseinfo")
