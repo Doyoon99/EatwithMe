@@ -58,13 +58,13 @@ public class FlaskApi {
 
         // db에 담긴 사용자의 item, rating 정보를 list로 받아옴.
         for(int i=0; i < input_data_size; ++i){
-            System.out.println(i);
+            //System.out.println(i);
             item_idx.add(input_data.get(i).getStore_id());
             rating_idx.add(input_data.get(i).getRating());
         }
 
-        System.out.println(item_idx);
-        System.out.println(rating_idx);
+        //System.out.println(item_idx);
+        //System.out.println(rating_idx);
 
         // body에 추가
         body.add("item", item_idx);
