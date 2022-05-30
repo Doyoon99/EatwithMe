@@ -1,5 +1,6 @@
-package EWM.EatWithMe;
+package EWM.EatWithMe.mapper;
 
+import EWM.EatWithMe.domain.Storedata;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

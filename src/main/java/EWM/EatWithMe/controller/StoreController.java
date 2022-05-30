@@ -1,5 +1,7 @@
-package EWM.EatWithMe;
+package EWM.EatWithMe.controller;
 
+import EWM.EatWithMe.domain.Storedata;
+import EWM.EatWithMe.mapper.StoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
