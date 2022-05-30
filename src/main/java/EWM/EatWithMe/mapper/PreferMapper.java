@@ -17,9 +17,10 @@ public interface PreferMapper {
             @Result(property = "store_id", column = "store_id"),
             @Result(property = "rating", column = "rating")
     })
+
     List<Preferdata> getAll();
 
     @Select("SELECT * FROM prefer WHERE user_id=#{user_id}")
     @ResultMap("PreferMap")
-    Preferdata getById(@Param("user_id") int user_id);
+    List<Preferdata> getById(@Param("user_id") int user_id);
 }

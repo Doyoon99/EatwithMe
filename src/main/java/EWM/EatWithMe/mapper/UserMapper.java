@@ -20,7 +20,6 @@ public interface UserMapper {
 
 
     @Select("SELECT * FROM userdata")
-
     @Results(id = "UserMap", value = {
             //@Result(property = "idx", column = "idx"),
             @Result(property = "id", column = "user_id"),
@@ -32,7 +31,6 @@ public interface UserMapper {
             @Result(property = "appendDate", column = "APPEND_DATE"),
             @Result(property = "updateDate", column = "UPDATE_DATE")
     })
-
     List<Userdata> getAll();
     // user table에 있는 모든 내용을 list로 반환함
     // @Results : 자바 객체의 property(속성) 이름과 db table의 column name을 mapping 해주어야 함.

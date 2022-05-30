@@ -31,7 +31,7 @@ public class PreferController {
     }
 
     @GetMapping("/{user_id}")
-    public Preferdata getById(@PathVariable("user_id") int user_id){
+    public List<Preferdata> getById(@PathVariable("user_id") int user_id){
         return preferMapper.getById(user_id);
     }
 }
