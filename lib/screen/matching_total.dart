@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ffi';
 
 import 'package:first/main.dart';
 import 'package:first/screen/home_screen.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'dart:convert';
-import 'dart:ffi';
+
 import 'package:first/screen/group_listview_page.dart';
 import 'package:flutter/services.dart';
 import 'package:substring_highlight/substring_highlight.dart';
@@ -398,7 +399,14 @@ class _MatchingTotalState extends State<MatchingTotal> {
           ),
           actions: [
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.perm_identity_outlined)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => GroupListviewPage()),
+                  );
+                },
+                icon: Icon(Icons.perm_identity_outlined)),
           ],
         ),
         body: Stepper(

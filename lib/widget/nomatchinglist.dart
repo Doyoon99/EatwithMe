@@ -1,6 +1,7 @@
 import 'package:first/main.dart';
 import 'package:first/screen/matching_total.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NoMatchingList extends StatelessWidget {
   const NoMatchingList({Key? key}) : super(key: key);
@@ -79,10 +80,7 @@ class NoMatchingList extends StatelessWidget {
               Padding(padding: EdgeInsets.all(10.0)),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                  );
+                  Get.back();
                 },
                 child: Text('취소'),
               )
