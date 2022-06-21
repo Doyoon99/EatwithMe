@@ -230,16 +230,16 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                     );
                                   },
                                   child: Text("인원멈추기")),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Completed()),
-                                  );
-                                },
-                                child: Text("약속정보보기"),
-                              )
+                              Padding(padding: EdgeInsets.all(5)),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Completed()),
+                                    );
+                                  },
+                                  child: Text("약속정보보기")),
                             ]),
                       ),
                     ]),

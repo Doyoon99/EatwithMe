@@ -46,6 +46,8 @@ dependencies:
   flutter_svg: ^1.0.3
   web_ffi: ^0.7.2
   http: ^0.13.4
+  google_fonts: ^3.0.1
+  
 
 dev_dependencies:
   flutter_config: ^2.0.0
