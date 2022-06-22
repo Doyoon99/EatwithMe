@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:first/model/marketfile.dart';
+import 'package:first/screen/find_listview.dart';
 import 'package:first/widget/nomatchinglist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -153,7 +154,7 @@ class _TestGoogleMapState extends State<TestGoogleMap> {
                                                     Icon(Icons.person_search),
                                                 onPressed: () {
                                                   Get.to(
-                                                      () => NoMatchingList());
+                                                      () => FindListviewPage());
                                                 }),
                                           ),
                                         )

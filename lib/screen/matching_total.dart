@@ -149,6 +149,46 @@ class _MatchingTotalState extends State<MatchingTotal> {
                           );
                         },
                       ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          '식당추천리스트',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          '1순위: 피자보이시나 숙대입구점',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.normal),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          '2순위: 포36거리',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.normal),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          '3순위: 라리에또 숙대점',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.normal),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                 ),

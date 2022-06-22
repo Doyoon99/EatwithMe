@@ -4,40 +4,15 @@ import 'package:grouped_list/grouped_list.dart';
 
 List _dataDummy = [
   {
-    "type": "매칭완료약속",
-    "place": "와우 신내떡 숙명여대점",
-    "title": "신내떡 런치 세트 같이 먹으실 분 구합니다!",
-    "name": "신내떡 먹고 싶다(20)",
-    "date": "2022.05.10",
-    "time": "14:00",
-    "endtime": "16:00"
-  },
-  {
-    "type": "매칭완료약속",
-    "place": "코피티암 숙대점",
-    "title": "코피티암에서 공부할 새내기 구합니다",
-    "name": "신입생(21)",
-    "date": "2022.05.19",
-    "time": "13:00",
-    "endtime": "14:00"
-  },
-  {
-    "type": "대기중 약속",
-    "place": "피자보이시나",
-    "title": "피자보이시나 포장 나누실 분 있으신가요?",
-    "name": "청파동 자취생(21)",
-    "date": "2022.05.20",
-    "time": "16:00",
-    "endtime": "18:00"
-  },
-  {
-    "type": "대기중 약속",
-    "place": "포 36거리 숙대점",
-    "title": "포돈 먹으러 갈 사람 여기 모여라",
-    "name": "피자보이시나(21)",
-    "date": "2022.05.21",
-    "time": "17:00",
-    "endtime": "20:00"
+    "type": "신청완료약속",
+    "place": "피자보이시나 숙대입구점",
+    "title": "피자보이시나에서 피자먹어요",
+    "name": "저는 18학번 송이입니다",
+    "date": "2022.06.29",
+    "time": "12:00",
+    "endtime": "14:00",
+    "min": "2",
+    "max": "3",
   }
 ];
 
@@ -101,9 +76,15 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                )
+                ),
               ],
-            ))
+            )),
+            TextButton(
+              child: Text('내 취향 분석하러 가기'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
           ]),
         ),
 
@@ -133,7 +114,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Icon(Icons.account_circle_sharp,
+                              Icon(Icons.article_outlined,
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
@@ -191,55 +172,18 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                         padding: EdgeInsets.only(left: 10, right: 10, top: 5),
                         child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              ElevatedButton(
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible:
-                                          false, // 다이얼로그 이외의 바탕 눌러도 안꺼지도록 설정
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Text('확인창'),
-                                          content: SingleChildScrollView(
-                                            child: ListBody(
-                                              //List Body를 기준으로 Text 설정
-                                              children: <Widget>[
-                                                Text('확인 버튼을 누르면 약속이 성사되어'),
-                                                Text('더 이상 인원을 추가할 수 없습니다.'),
-                                              ],
-                                            ),
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                              child: Text('확인'),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                            TextButton(
-                                              child: Text('취소'),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: Text("인원멈추기")),
-                              Padding(padding: EdgeInsets.all(5)),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Completed()),
-                                    );
-                                  },
-                                  child: Text("약속정보보기")),
+                              Icon(Icons.account_circle_sharp,
+                                  color: Colors.grey, size: 16),
+                              Container(
+                                margin: EdgeInsets.only(left: 10),
+                                child: Text('${element['min']}'),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 10),
+                                child: Text('~ ${element['max']}'),
+                              ),
                             ]),
                       ),
                     ]),
