@@ -4,48 +4,40 @@ import 'package:grouped_list/grouped_list.dart';
 
 List _dataDummy = [
   {
-    "type": "대기중 약속",
+    "type": "대기 중 약속",
     "place": "와우 신내떡 숙명여대점",
     "title": "신내떡 런치 세트 같이 먹으실 분 구합니다!",
     "name": "신내떡 먹고 싶다(20)",
-    "date": "2022.06.30",
+    "date": "2022.05.10",
     "time": "14:00",
-    "endtime": "16:00",
-    "min": "2",
-    "max": "3",
+    "endtime": "16:00"
   },
   {
-    "type": "대기중 약속",
+    "type": "대기 중 약속",
     "place": "코피티암 숙대점",
     "title": "코피티암에서 공부할 새내기 구합니다",
     "name": "신입생(21)",
-    "date": "2022.06.29",
+    "date": "2022.05.19",
     "time": "13:00",
-    "endtime": "14:00",
-    "min": "2",
-    "max": "4",
+    "endtime": "14:00"
   },
   {
-    "type": "대기중 약속",
+    "type": "대기 중 약속",
     "place": "피자보이시나",
     "title": "피자보이시나 포장 나누실 분 있으신가요?",
     "name": "청파동 자취생(21)",
-    "date": "2022.06.30",
+    "date": "2022.05.20",
     "time": "16:00",
-    "endtime": "18:00",
-    "min": "3",
-    "max": "3",
+    "endtime": "18:00"
   },
   {
-    "type": "대기중 약속",
+    "type": "대기 중 약속",
     "place": "포 36거리 숙대점",
     "title": "포돈 먹으러 갈 사람 여기 모여라",
     "name": "피자보이시나(21)",
-    "date": "2022.06.29",
+    "date": "2022.05.21",
     "time": "17:00",
-    "endtime": "20:00",
-    "min": "2",
-    "max": "3",
+    "endtime": "20:00"
   }
 ];
 
@@ -141,7 +133,7 @@ class _RealTimeListState extends State<RealTimeList> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Icon(Icons.article_outlined,
+                              Icon(Icons.account_circle_sharp,
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
@@ -193,68 +185,6 @@ class _RealTimeListState extends State<RealTimeList> {
                                 margin: EdgeInsets.only(left: 10),
                                 child: Text('${element['place']}'),
                               ),
-                            ]),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5),
-                        child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(Icons.account_circle_sharp,
-                                  color: Colors.grey, size: 16),
-                              Container(
-                                margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['min']}'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['max']}'),
-                              ),
-                            ]),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5),
-                        child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              ElevatedButton(
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible:
-                                          false, // 다이얼로그 이외의 바탕 눌러도 안꺼지도록 설정
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Text('확인창'),
-                                          content: SingleChildScrollView(
-                                            child: ListBody(
-                                              //List Body를 기준으로 Text 설정
-                                              children: <Widget>[
-                                                Text('신청하시겠습니까?'),
-                                              ],
-                                            ),
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                              child: Text('확인'),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                            TextButton(
-                                              child: Text('취소'),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: Text("신청")),
                             ]),
                       ),
                     ]),

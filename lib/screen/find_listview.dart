@@ -1,30 +1,54 @@
 import 'package:first/screen/completed.dart';
-import 'package:first/screen/group_listview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 
 List _dataDummy = [
   {
-    "type": "대기 중 약속",
-    "place": "피자보이시나 숙대입구점",
-    "title": "피자보이시나에서 피자먹어요",
-    "name": "저는 18학번 송이입니다",
-    "date": "2022.06.29",
-    "time": "12:00",
-    "endtime": "14:00",
-    "min": "2",
-    "max": "3",
+    "type": "매칭완료약속",
+    "place": "와우 신내떡 숙명여대점",
+    "title": "신내떡 런치 세트 같이 먹으실 분 구합니다!",
+    "name": "신내떡 먹고 싶다(20)",
+    "date": "2022.05.10",
+    "time": "14:00",
+    "endtime": "16:00"
+  },
+  {
+    "type": "매칭완료약속",
+    "place": "코피티암 숙대점",
+    "title": "코피티암에서 공부할 새내기 구합니다",
+    "name": "신입생(21)",
+    "date": "2022.05.19",
+    "time": "13:00",
+    "endtime": "14:00"
+  },
+  {
+    "type": "대기중 약속",
+    "place": "피자보이시나",
+    "title": "피자보이시나 포장 나누실 분 있으신가요?",
+    "name": "청파동 자취생(21)",
+    "date": "2022.05.20",
+    "time": "16:00",
+    "endtime": "18:00"
+  },
+  {
+    "type": "대기중 약속",
+    "place": "포 36거리 숙대점",
+    "title": "포돈 먹으러 갈 사람 여기 모여라",
+    "name": "피자보이시나(21)",
+    "date": "2022.05.21",
+    "time": "17:00",
+    "endtime": "20:00"
   }
 ];
 
-class FindListviewPage extends StatefulWidget {
-  const FindListviewPage({Key? key}) : super(key: key);
+class GroupListviewPage extends StatefulWidget {
+  const GroupListviewPage({Key? key}) : super(key: key);
 
   @override
-  State<FindListviewPage> createState() => _FindListviewPageState();
+  State<GroupListviewPage> createState() => _GroupListviewPageState();
 }
 
-class _FindListviewPageState extends State<FindListviewPage> {
+class _GroupListviewPageState extends State<GroupListviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,13 +82,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => GroupListviewPage()),
-                );
-              },
-              icon: Icon(Icons.perm_identity_outlined)),
+              onPressed: () {}, icon: Icon(Icons.perm_identity_outlined)),
         ],
       ),
       body: GroupedListView<dynamic, String>(
@@ -115,7 +133,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Icon(Icons.article_outlined,
+                              Icon(Icons.account_circle_sharp,
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
@@ -173,24 +191,6 @@ class _FindListviewPageState extends State<FindListviewPage> {
                         padding: EdgeInsets.only(left: 10, right: 10, top: 5),
                         child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(Icons.account_circle_sharp,
-                                  color: Colors.grey, size: 16),
-                              Container(
-                                margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['min']}'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['max']}'),
-                              ),
-                            ]),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5),
-                        child: Row(
-                            mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton(
@@ -206,7 +206,8 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                             child: ListBody(
                                               //List Body를 기준으로 Text 설정
                                               children: <Widget>[
-                                                Text('신청하시겠습니까?'),
+                                                Text('확인 버튼을 누르면 약속이 성사되어'),
+                                                Text('더 이상 인원을 추가할 수 없습니다.'),
                                               ],
                                             ),
                                           ),
@@ -228,7 +229,17 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                       },
                                     );
                                   },
-                                  child: Text("신청")),
+                                  child: Text("인원멈추기")),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Completed()),
+                                  );
+                                },
+                                child: Text("약속정보보기"),
+                              )
                             ]),
                       ),
                     ]),
