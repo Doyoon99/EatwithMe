@@ -5,14 +5,14 @@ import 'package:grouped_list/grouped_list.dart';
 List _dataDummy = [
   {
     "type": "신청완료약속",
-    "place": "피자보이시나 숙대입구점",
-    "title": "피자보이시나에서 피자먹어요",
-    "name": "저는 18학번 송이입니다",
-    "date": "2022.06.29",
-    "time": "12:00",
-    "endtime": "14:00",
-    "min": "2",
-    "max": "3",
+    "store_name": "와우신내떡",
+    "title": ".",
+    "detail": ".",
+    "promise_date": "2022.06.30",
+    "starttime": "16:00",
+    "endtime": "18:00",
+    "minpers": "2",
+    "maxpers": "3",
   }
 ];
 
@@ -118,7 +118,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['name']}'),
+                                child: Text('${element['detail']}'),
                               ),
                             ]),
                       ),
@@ -132,7 +132,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['date']}'),
+                                child: Text('${element['promise_date']}'),
                               ),
                             ]),
                       ),
@@ -146,7 +146,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['time']}'),
+                                child: Text('${element['starttime']}'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
@@ -164,7 +164,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['place']}'),
+                                child: Text('${element['store_name']}'),
                               ),
                             ]),
                       ),
@@ -178,11 +178,11 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['min']}'),
+                                child: Text('${element['minpers']}'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['max']}'),
+                                child: Text('~ ${element['maxpers']}'),
                               ),
                             ]),
                       ),

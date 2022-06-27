@@ -6,12 +6,12 @@ import 'package:grouped_list/grouped_list.dart';
 List _dataDummy = [
   {
     "type": "대기 중 약속",
-    "place": "피자보이시나 숙대입구점",
-    "title": "피자보이시나에서 피자먹어요",
-    "name": "저는 18학번 송이입니다",
-    "date": "2022.06.29",
-    "time": "12:00",
-    "endtime": "14:00",
+    "place": "와우신내떡",
+    "title": ".",
+    "name": ".",
+    "date": "2022.06.30",
+    "time": "16:00",
+    "endtime": "18:00",
     "min": "2",
     "max": "3",
   }

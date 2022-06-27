@@ -49,18 +49,18 @@ class _MatchingTotalState extends State<MatchingTotal> {
     });
   }
 
-  TextEditingController controller = TextEditingController();
-  TextEditingController dateinput = TextEditingController();
-  TextEditingController timeinput = TextEditingController();
-  TextEditingController endtimeinput = TextEditingController();
-  TextEditingController inputDetail = TextEditingController();
-  TextEditingController inputTitle = TextEditingController();
+  TextEditingController store_name = TextEditingController();
+  TextEditingController promise_date = TextEditingController();
+  TextEditingController starttime = TextEditingController();
+  TextEditingController endtime = TextEditingController();
+  TextEditingController detail = TextEditingController();
+  TextEditingController title = TextEditingController();
 
   @override
   void initState() {
-    dateinput.text = "";
-    timeinput.text = "";
-    endtimeinput.text = ""; //set the initial value of text field
+    promise_date.text = "";
+    starttime.text = "";
+    endtime.text = ""; //set the initial value of text field
     super.initState();
     fetchAutoCompleteData();
   }
@@ -102,7 +102,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                                   //title: Text(option.toString()),
                                   title: SubstringHighlight(
                                     text: option.toString(),
-                                    term: controller.text,
+                                    term: store_name.text,
                                     textStyleHighlight:
                                         TextStyle(fontWeight: FontWeight.w700),
                                   ),
@@ -121,7 +121,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                         },
                         fieldViewBuilder: (context, controller, focusNode,
                             onEdittingComplete) {
-                          this.controller = controller;
+                          this.store_name = controller;
 
                           return TextField(
                             controller: controller,
@@ -202,7 +202,8 @@ class _MatchingTotalState extends State<MatchingTotal> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextField(
-                  controller: dateinput, //editing controller of this TextField
+                  controller:
+                      promise_date, //editing controller of this TextField
                   decoration: InputDecoration(
                       icon: Icon(Icons.calendar_today), //icon of text field
                       labelText: "날짜" //label text of field
@@ -227,7 +228,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                       //you can implement different kind of Date Format here according to your requirement
 
                       setState(() {
-                        dateinput.text =
+                        promise_date.text =
                             formattedDate; //set output date to TextField value.
                       });
                     } else {
@@ -239,7 +240,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                   height: 8,
                 ),
                 TextField(
-                  controller: timeinput, //editing controller of this TextField
+                  controller: starttime, //editing controller of this TextField
                   decoration: InputDecoration(
                       icon: Icon(Icons.timer), //icon of text field
                       labelText: "시작 시간" //label text of field
@@ -265,7 +266,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                       //DateFormat() is from intl package, you can format the time on any pattern you need.
 
                       setState(() {
-                        timeinput.text =
+                        starttime.text =
                             formattedTime; //set the value of text field.
                       });
                     } else {
@@ -277,8 +278,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                   height: 8,
                 ),
                 TextField(
-                  controller:
-                      endtimeinput, //editing controller of this TextField
+                  controller: endtime, //editing controller of this TextField
                   decoration: InputDecoration(
                       icon: Icon(Icons.timer), //icon of text field
                       labelText: "끝나는 시간" //label text of field
@@ -304,7 +304,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                       //DateFormat() is from intl package, you can format the time on any pattern you need.
 
                       setState(() {
-                        endtimeinput.text =
+                        endtime.text =
                             formattedTime; //set the value of text field.
                       });
                     } else {
@@ -366,7 +366,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
             content: Container(
               child: Column(children: [
                 TextField(
-                  controller: inputTitle,
+                  controller: title,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.border_color_outlined),
@@ -377,7 +377,7 @@ class _MatchingTotalState extends State<MatchingTotal> {
                   height: 8,
                 ),
                 TextField(
-                  controller: inputDetail,
+                  controller: detail,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.article_outlined),
@@ -398,9 +398,9 @@ class _MatchingTotalState extends State<MatchingTotal> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('식당: ${controller.text}'),
-                Text('약속날짜: ${dateinput.text}'),
-                Text('약속 시간: ${timeinput.text} ~ ${endtimeinput.text}'),
+                Text('식당: ${store_name.text}'),
+                Text('약속날짜: ${promise_date.text}'),
+                Text('약속 시간: ${starttime.text} ~ ${endtime.text}'),
                 Text('인원: ${_selectedValue} ~ ${_selectedValueMax}'),
               ],
             )))
