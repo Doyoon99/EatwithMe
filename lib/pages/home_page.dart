@@ -1,8 +1,11 @@
-import 'package:first/screen/home_screen.dart';
-import 'package:first/screen/matching_total.dart';
-import 'package:first/screen/real_time_list.dart';
-import 'package:first/widget/bottom_home.dart';
+
+import 'package:eat_with_me/screen/recommend_register.dart';
 import 'package:flutter/material.dart';
+
+import '../screen/home_screen.dart';
+import '../screen/make_matching.dart';
+import '../screen/real_time_listview.dart';
+import '../widget/bottom_home.dart';
 
 class HomePages extends StatelessWidget {
   const HomePages({Key? key}) : super(key: key);

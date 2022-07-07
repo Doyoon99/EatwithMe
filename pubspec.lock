@@ -56,7 +56,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   direct_select:
     dependency: "direct main"
     description:
@@ -91,7 +91,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_config:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_config
       url: "https://pub.dartlang.org"
@@ -110,7 +110,7 @@ packages:
       name: flutter_form_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.1"
+    version: "7.3.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -143,7 +143,7 @@ packages:
       name: get
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.6.1"
+    version: "4.6.5"
   google_fonts:
     dependency: "direct main"
     description:
@@ -157,14 +157,14 @@ packages:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.8"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
       name: google_maps_flutter_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.7"
+    version: "2.2.0"
   grouped_list:
     dependency: "direct main"
     description:
@@ -332,7 +332,7 @@ packages:
       name: searchfield
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.4"
+    version: "0.6.6"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -1,33 +1,30 @@
 
-
-import 'package:eat_with_me/screen/make_matching.dart';
+import 'package:eat_with_me/screen/recommend_register.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 
-import 'application_listview.dart';
-
 List _dataDummy = [
   {
-    "type": "대기 중 약속",
-    "place": "와우신내떡",
+    "type": "신청 완료 약속",
+    "store_name": "와우신내떡",
     "title": ".",
-    "name": ".",
-    "date": "2022.06.30",
-    "time": "16:00",
+    "detail": ".",
+    "promise_date": "2022.06.30",
+    "starttime": "16:00",
     "endtime": "18:00",
-    "min": "2",
-    "max": "3",
+    "minpers": "2",
+    "maxpers": "3",
   }
 ];
 
-class FindListviewPage extends StatefulWidget {
-  const FindListviewPage({Key? key}) : super(key: key);
+class GroupListviewPage extends StatefulWidget {
+  const GroupListviewPage({Key? key}) : super(key: key);
 
   @override
-  State<FindListviewPage> createState() => _FindListviewPageState();
+  State<GroupListviewPage> createState() => _GroupListviewPageState();
 }
 
-class _FindListviewPageState extends State<FindListviewPage> {
+class _GroupListviewPageState extends State<GroupListviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,26 +58,10 @@ class _FindListviewPageState extends State<FindListviewPage> {
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () {Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => GroupListviewPage()),
-                );
-              },
-              icon: Icon(Icons.perm_identity_outlined)),
+                  MaterialPageRoute(builder: (context) => GroupListviewPage()),);}, icon: Icon(Icons.perm_identity_outlined)),
         ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MatchingTotal()),
-          );
-
-        },
-        icon: const Icon(Icons.add),
-        label: const Text('약속 만들기'),
-        backgroundColor: Colors.blueAccent,
       ),
       body: GroupedListView<dynamic, String>(
         elements: _dataDummy,
@@ -98,9 +79,17 @@ class _FindListviewPageState extends State<FindListviewPage> {
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                )
+                ),
               ],
-            ))
+            )),
+            TextButton(
+              child: Text('내 취향 분석하러 가기'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RecommendRegister()),);
+              },
+            ),
           ]),
         ),
 
@@ -134,7 +123,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['name']}'),
+                                child: Text('${element['detail']}'),
                               ),
                             ]),
                       ),
@@ -148,7 +137,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['date']}'),
+                                child: Text('${element['promise_date']}'),
                               ),
                             ]),
                       ),
@@ -162,7 +151,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['time']}'),
+                                child: Text('${element['starttime']}'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
@@ -180,7 +169,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['place']}'),
+                                child: Text('${element['store_name']}'),
                               ),
                             ]),
                       ),
@@ -194,11 +183,11 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['min']}'),
+                                child: Text('${element['minpers']}'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['max']}'),
+                                child: Text('~ ${element['maxpers']}'),
                               ),
                             ]),
                       ),
@@ -213,7 +202,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                     showDialog(
                                       context: context,
                                       barrierDismissible:
-                                          false, // 다이얼로그 이외의 바탕 눌러도 안꺼지도록 설정
+                                      false, // 다이얼로그 이외의 바탕 눌러도 안꺼지도록 설정
                                       builder: (BuildContext context) {
                                         return AlertDialog(
                                           title: Text('확인창'),
@@ -221,19 +210,19 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                             child: ListBody(
                                               //List Body를 기준으로 Text 설정
                                               children: <Widget>[
-                                                Text('신청하시겠습니까?'),
+                                                Text('취소하시겠습니까?'),
                                               ],
                                             ),
                                           ),
                                           actions: [
                                             TextButton(
-                                              child: Text('확인'),
+                                              child: Text('네'),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
                                             ),
                                             TextButton(
-                                              child: Text('취소'),
+                                              child: Text('아니요'),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
@@ -243,15 +232,13 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                       },
                                     );
                                   },
-                                  child: Text("신청")),
+                                  child: Text("취소")),
                             ]),
 
                       ),
-
                     ]),
-              ),);
-
-          },
+              ));
+        },
         itemComparator: (item1, item2) =>
             item1['title'].compareTo(item2['title']), // optional
         useStickyGroupSeparators: true, // optional

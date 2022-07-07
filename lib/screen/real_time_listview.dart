@@ -1,6 +1,4 @@
 
-
-import 'package:eat_with_me/screen/make_matching.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 
@@ -8,26 +6,70 @@ import 'application_listview.dart';
 
 List _dataDummy = [
   {
-    "type": "대기 중 약속",
-    "place": "와우신내떡",
-    "title": ".",
-    "name": ".",
-    "date": "2022.06.30",
-    "time": "16:00",
+    "type": "대기중 약속",
+    "store_name": "와우신내떡",
+    "title": "신내떡 런치 세트 같이 먹으실 분 구합니다!",
+    "detail": "신내떡 먹고 싶다(20)",
+    "promise_date": "2022.06.30",
+    "starttime": "14:00",
+    "endtime": "16:00",
+    "minpers": "2",
+    "maxpers": "3",
+  },
+  {
+    "type": "대기중 약속",
+    "store_name": "코피티암 숙대점",
+    "title": "코피티암에서 공부할 새내기 구합니다",
+    "detail": "신입생(21)",
+    "promise_date": "2022.06.29",
+    "starttime": "13:00",
+    "endtime": "14:00",
+    "minpers": "2",
+    "maxpers": "4",
+  },
+  {
+    "type": "대기중 약속",
+    "store_name": "피자보이시나",
+    "title": "피자보이시나 포장 나누실 분 있으신가요?",
+    "detail": "청파동 자취생(21)",
+    "promise_date": "2022.06.30",
+    "starttime": "16:00",
     "endtime": "18:00",
-    "min": "2",
-    "max": "3",
+    "minpers": "3",
+    "maxpers": "3",
+  },
+  {
+    "type": "대기중 약속",
+    "store_name": "포 36거리 숙대점",
+    "title": "포돈 먹으러 갈 사람 여기 모여라",
+    "detail": "포동이(21)",
+    "promise_date": "2022.06.29",
+    "starttime": "17:00",
+    "endtime": "20:00",
+    "minpers": "2",
+    "maxpers": "3",
+  },
+  {
+    "type": "신청완료약속",
+    "store_name": "와우신내떡",
+    "title": ".",
+    "detail": ".",
+    "promise_date": "2022.06.30",
+    "starttime": "16:00",
+    "endtime": "18:00",
+    "minpers": "2",
+    "maxpers": "3",
   }
 ];
 
-class FindListviewPage extends StatefulWidget {
-  const FindListviewPage({Key? key}) : super(key: key);
+class RealTimeList extends StatefulWidget {
+  const RealTimeList({Key? key}) : super(key: key);
 
   @override
-  State<FindListviewPage> createState() => _FindListviewPageState();
+  State<RealTimeList> createState() => _RealTimeListState();
 }
 
-class _FindListviewPageState extends State<FindListviewPage> {
+class _RealTimeListState extends State<RealTimeList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,21 +108,8 @@ class _FindListviewPageState extends State<FindListviewPage> {
                   context,
                   MaterialPageRoute(builder: (context) => GroupListviewPage()),
                 );
-              },
-              icon: Icon(Icons.perm_identity_outlined)),
+              }, icon: Icon(Icons.perm_identity_outlined)),
         ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MatchingTotal()),
-          );
-
-        },
-        icon: const Icon(Icons.add),
-        label: const Text('약속 만들기'),
-        backgroundColor: Colors.blueAccent,
       ),
       body: GroupedListView<dynamic, String>(
         elements: _dataDummy,
@@ -134,7 +163,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['name']}'),
+                                child: Text('${element['detail']}'),
                               ),
                             ]),
                       ),
@@ -148,7 +177,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['date']}'),
+                                child: Text('${element['promise_date']}'),
                               ),
                             ]),
                       ),
@@ -162,7 +191,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['time']}'),
+                                child: Text('${element['starttime']}'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
@@ -180,7 +209,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['place']}'),
+                                child: Text('${element['store_name']}'),
                               ),
                             ]),
                       ),
@@ -194,11 +223,11 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['min']}'),
+                                child: Text('${element['minpers']}'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['max']}'),
+                                child: Text('~ ${element['maxpers']}'),
                               ),
                             ]),
                       ),
@@ -245,13 +274,10 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   },
                                   child: Text("신청")),
                             ]),
-
                       ),
-
                     ]),
-              ),);
-
-          },
+              ));
+        },
         itemComparator: (item1, item2) =>
             item1['title'].compareTo(item2['title']), // optional
         useStickyGroupSeparators: true, // optional
