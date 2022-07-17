@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface PromiseinfoMapper {
-    @Insert("INSERT INTO promiseinfo(promise_id, promise_date, minpers, maxpers, starttime, endtime, title, detail, approve) VALUES(#{promiseinfo.promise_id}, #{promiseinfo.promise_date}, #{promiseinfo.minpers}, #{promiseinfo.maxpers}, #{promiseinfo.starttime}, #{promiseinfo.endtime}, #{promiseinfo.title}, #{promiseinfo.detail}, #{promiseinfo.approve})")
+    @Insert("INSERT INTO promiseinfo(promise_id, promise_date, minpers, maxpers, starttime, endtime, title, detail, approve, store_name) VALUES(#{promiseinfo.promise_id}, #{promiseinfo.promise_date}, #{promiseinfo.minpers}, #{promiseinfo.maxpers}, #{promiseinfo.starttime}, #{promiseinfo.endtime}, #{promiseinfo.title}, #{promiseinfo.detail}, #{promiseinfo.approve}, #{promiseinfo.store_name})")
     int insert(@Param("promiseinfo") Promiseinfodata promiseinfodata);
 
     @Select("SELECT * FROM promiseinfo")
@@ -20,7 +20,8 @@ public interface PromiseinfoMapper {
             @Result(property = "end", column = "endtime"),
             @Result(property = "title", column = "title"),
             @Result(property = "detail", column = "detail"),
-            @Result(property = "approve", column = "approve")
+            @Result(property = "approve", column = "approve"),
+            @Result(property = "storeName", column = "store_name"),
     })
     List<Promiseinfodata> getAll();
 

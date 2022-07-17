@@ -17,6 +17,9 @@ public class Promiseinfodata {
     String detail;
     int approve;
 
+    String storeName;
+
+
     public int getId() {
         return id;
     }
@@ -87,6 +90,14 @@ public class Promiseinfodata {
 
     public void setApprove(int approve) {
         this.approve = approve;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public Promiseinfodata() {}
