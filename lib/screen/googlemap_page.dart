@@ -153,8 +153,10 @@ class _TestGoogleMapState extends State<TestGoogleMap> {
                                                 child:
                                                     Icon(Icons.person_search),
                                                 onPressed: () {
-                                                  Get.to(
-                                                      () => FindListviewPage());
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(builder: (context) => FindListviewPage()),
+                                                  );
                                                 }),
                                           ),
                                         )

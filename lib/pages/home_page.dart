@@ -1,7 +1,9 @@
 
 import 'package:eat_with_me/screen/recommend_register.dart';
+import 'package:eat_with_me/screen/total_make_matching.dart';
 import 'package:flutter/material.dart';
 
+import '../screen/googlemap_page.dart';
 import '../screen/home_screen.dart';
 import '../screen/make_matching.dart';
 import '../screen/real_time_listview.dart';
@@ -19,7 +21,7 @@ class HomePages extends StatelessWidget {
             children: <Widget>[
               Homescreen(),
               RealTimeList(),
-              MatchingTotal(),
+              TotalMakeMatching(),
             ],
           ),
           bottomNavigationBar: Bottom_home()),
