@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Insert("INSERT INTO userdata(user_id, user_name, user_pw, school, google_id) VALUES(#{userdata.id}, #{userdata.name}, #{userdata.pw}, #{userdata.school}, #{userdata.googleId})")
+    @Insert("INSERT INTO userdata(user_id, user_name, user_pw, school) VALUES(#{userdata.id}, #{userdata.name}, #{userdata.pw}, #{userdata.school})")
     //@Options(useGeneratedKeys = true, keyProperty = "idx")
     int insert(@Param("userdata") Userdata userdata);
     // sql insert 구문은 입력이 성공하면 입력된 데이터의 개수를 반환한다.
@@ -25,7 +25,7 @@ public interface UserMapper {
             //@Result(property = "idx", column = "idx"),
             @Result(property = "id", column = "user_id"),
             @Result(property = "name", column = "user_name"),
-            @Result(property = "pwd", column = "user_pw"),
+            @Result(property = "pw", column = "user_pw"),
             @Result(property = "school", column = "school")
     })
 

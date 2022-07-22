@@ -21,5 +21,5 @@ public interface PreferMapper {
 
     @Select("SELECT * FROM prefer WHERE user_id=#{user_id}")
     @ResultMap("PreferMap")
-    Preferdata getById(@Param("user_id") int user_id);
+    List<Preferdata> getById(@Param("user_id") int user_id);
 }
