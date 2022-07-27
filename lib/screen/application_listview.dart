@@ -1,99 +1,51 @@
 
+import 'dart:convert';
+
 import 'package:eat_with_me/screen/recommend_register.dart';
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:http/http.dart' as http;
 
-List _dataDummy = [
-  {
-    "type": "신청 완료 약속",
-    "store_name": "와우신내떡",
-    "title": ".",
-    "detail": ".",
-    "promise_date": "2022.06.30",
-    "starttime": "16:00",
-    "endtime": "18:00",
-    "minpers": "2",
-    "maxpers": "3",
-  }
-];
 
-class GroupListviewPage extends StatefulWidget {
-  const GroupListviewPage({Key? key}) : super(key: key);
+class ApplicationListview extends StatefulWidget {
+  const ApplicationListview({Key? key}) : super(key: key);
 
   @override
-  State<GroupListviewPage> createState() => _GroupListviewPageState();
+  State<ApplicationListview> createState() => _ApplicationListviewState();
 }
 
-class _GroupListviewPageState extends State<GroupListviewPage> {
+class _ApplicationListviewState extends State<ApplicationListview> {
+  final url = "http://3.35.250.231:8080/api/matching?promiseId=2";
+
+  var _postJson =[];
+
+  void fetchPosts() async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+
+      setState(() {
+        _postJson = jsonData;
+      });
+
+    }catch(err){
+    }
+  }
+  @override
+  void initState(){
+    super.initState();
+    fetchPosts();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        title: GestureDetector(
-          onTap: () {
-            print("click");
-          },
-          child: PopupMenuButton<String>(
-            offset: Offset(0, 30),
-            shape: ShapeBorder.lerp(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                1),
-            onSelected: (String where) {
-              print(where);
-            },
-            itemBuilder: (BuildContext context) {
-              return [
-                PopupMenuItem(value: "sookmyung", child: Text("숙명여대")),
-                PopupMenuItem(value: "ewha", child: Text("이화여대")),
-              ];
-            },
-            child: Row(
-              children: [Text("숙명여대"), Icon(Icons.arrow_drop_down)],
-            ),
-          ),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => GroupListviewPage()),);}, icon: Icon(Icons.perm_identity_outlined)),
-        ],
+        title: Text('마이페이지'),
       ),
-      body: GroupedListView<dynamic, String>(
-        elements: _dataDummy,
-        groupBy: (element) => element['type'],
-        groupSeparatorBuilder: (String groupByValue) => Padding(
-          padding: EdgeInsets.all(10),
-          child: Row(children: [
-            Flexible(
-                child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  child: Text(
-                    groupByValue,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            )),
-            TextButton(
-              child: Text('내 취향 분석하러 가기'),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RecommendRegister()),);
-              },
-            ),
-          ]),
-        ),
-
-        itemBuilder: (context, dynamic element) {
+      body: ListView.builder(
+        itemCount: _postJson.length,
+        itemBuilder: (context, dynamic index) {
+          final post=_postJson[index];
           return Card(
               elevation: 10,
               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -104,16 +56,6 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Text(
-                          element['title'],
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Padding(
                         padding: EdgeInsets.only(left: 10, right: 10, top: 5),
                         child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -123,7 +65,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['detail']}'),
+                                child: Text("${post["title"]}"),
                               ),
                             ]),
                       ),
@@ -137,7 +79,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['promise_date']}'),
+                                child: Text("${post["date"]}"),
                               ),
                             ]),
                       ),
@@ -151,11 +93,11 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['starttime']}'),
+                                child: Text("${post["start"]}"),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['endtime']}'),
+                                child: Text("~ ${post["end"]}"),
                               ),
                             ]),
                       ),
@@ -169,7 +111,7 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['store_name']}'),
+                                child: Text("${post["storeName"]}"),
                               ),
                             ]),
                       ),
@@ -183,11 +125,11 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['minpers']}'),
+                                child: Text("${post["min"]}"),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['maxpers']}'),
+                                child: Text("~ ${post["max"]}"),
                               ),
                             ]),
                       ),
@@ -197,7 +139,60 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              TextButton(
+                                child: Text('상세 정보 확인'),
+                                style: TextButton.styleFrom(
+                                  primary: Colors.blueAccent, // Text Color
+                                ),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('상세정보'),
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Container(
+                                              color: Colors.grey[100],
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 10.0,
+                                                vertical: 20.0,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  Text("제목: ${post["title"]}"),
+                                                  Text("세부사항: ${post["detail"]}"),
+                                                  Text("식당이름: ${post["storeName"]}"),
+                                                  Text("날짜: ${post["date"]}"),
+                                                  Text("시간: ${post["start"]}~${post["end"]}"),
+                                                  Text("인원: ${post["min"]}~${post["max"]}"),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop(true);
+                                            },
+                                            child: Text('OK'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                               ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.blueAccent, // Background color
+                                    onPrimary: Colors.white, // Text Color (Foreground color)
+                                  ),
                                   onPressed: () {
                                     showDialog(
                                       context: context,
@@ -216,13 +211,13 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                           ),
                                           actions: [
                                             TextButton(
-                                              child: Text('네'),
+                                              child: Text('확인'),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
                                             ),
                                             TextButton(
-                                              child: Text('아니요'),
+                                              child: Text('취소'),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
@@ -233,18 +228,28 @@ class _GroupListviewPageState extends State<GroupListviewPage> {
                                     );
                                   },
                                   child: Text("취소")),
+
                             ]),
 
                       ),
+
                     ]),
               ));
         },
-        itemComparator: (item1, item2) =>
-            item1['title'].compareTo(item2['title']), // optional
-        useStickyGroupSeparators: true, // optional
-        floatingHeader: true, // optional
-        order: GroupedListOrder.DESC, // optional
       ),
+
+      floatingActionButton :
+        FloatingActionButton.extended(
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RecommendRegister()),);
+            },
+            label: Text('취향 분석 등록'),
+          icon: Icon(Icons.add_task),
+          backgroundColor: Colors.blue[900],
+          elevation: 0,
+        ),
     );
   }
 }

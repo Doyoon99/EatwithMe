@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:eat_with_me/widget/register_user.dart';
+import 'package:eat_with_me/model/register_user.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
-import '../widget/user.dart';
+import '../model/user.dart';
 
 class Register extends StatefulWidget {
   Register({Key ? key}) : super(key: key);
@@ -46,7 +46,7 @@ class _RegisterState extends State<Register> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 40,
+                          height: 20,
                         ),
                         Text("Register",
                             style: GoogleFonts.pacifico(
@@ -178,27 +178,31 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                         ),
-                        TextFormField(
-                          controller: TextEditingController(text: registeruser.school),
-                          onChanged: (val) {
-                            registeruser.school = val;
-                          },
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'school is Empty';
-                            }
-                            return null;
-                          },
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                          decoration: InputDecoration(
-                              errorStyle:
-                              TextStyle(fontSize: 20, color: Colors.black),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none)),
-                        ),
-                        Container(
-                          height: 5,
-                          color: Color.fromRGBO(255, 255, 255, 0.4),
+                        DropdownButton(
+                          dropdownColor: Colors.indigo,
+                          isExpanded: true,
+                            elevation: 12 , itemHeight: kMinInteractiveDimension +10,
+                                underline: Container(
+                                  height: 2.0,
+                                  color: Colors.grey[400],
+                                ),
+                        items: ['숙명여자대학교']
+                            .map<DropdownMenuItem<String>>(
+                                (value) => DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Padding(
+                                    padding:EdgeInsets.only(left: 20.0),
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(color: Colors.white,fontSize: 18.0),
+                                    ),
+                                  ),
+                                ),
+                        )
+                         .toList(),
+                         value: '숙명여자대학교',
+                         onChanged: (value) => setState(() {
+                         }),
                         ),
                         SizedBox(
                           height: 20,

@@ -1,24 +1,10 @@
 
 
-import 'package:eat_with_me/screen/make_matching.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 
 import 'application_listview.dart';
 
-List _dataDummy = [
-  {
-    "type": "대기 중 약속",
-    "place": "와우신내떡",
-    "title": ".",
-    "name": ".",
-    "date": "2022.06.30",
-    "time": "16:00",
-    "endtime": "18:00",
-    "min": "2",
-    "max": "3",
-  }
-];
 
 class FindListviewPage extends StatefulWidget {
   const FindListviewPage({Key? key}) : super(key: key);
@@ -33,78 +19,11 @@ class _FindListviewPageState extends State<FindListviewPage> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        title: GestureDetector(
-          onTap: () {
-            print("click");
-          },
-          child: PopupMenuButton<String>(
-            offset: Offset(0, 30),
-            shape: ShapeBorder.lerp(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                1),
-            onSelected: (String where) {
-              print(where);
-            },
-            itemBuilder: (BuildContext context) {
-              return [
-                PopupMenuItem(value: "sookmyung", child: Text("숙명여대")),
-                PopupMenuItem(value: "ewha", child: Text("이화여대")),
-              ];
-            },
-            child: Row(
-              children: [Text("숙명여대"), Icon(Icons.arrow_drop_down)],
-            ),
-          ),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => GroupListviewPage()),
-                );
-              },
-              icon: Icon(Icons.perm_identity_outlined)),
-        ],
+        title: Text('식당별 매칭 목록'),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MatchingTotal()),
-          );
 
-        },
-        icon: const Icon(Icons.add),
-        label: const Text('약속 만들기'),
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: GroupedListView<dynamic, String>(
-        elements: _dataDummy,
-        groupBy: (element) => element['type'],
-        groupSeparatorBuilder: (String groupByValue) => Padding(
-          padding: EdgeInsets.all(10),
-          child: Row(children: [
-            Flexible(
-                child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  child: Text(
-                    groupByValue,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
-            ))
-          ]),
-        ),
-
-        itemBuilder: (context, dynamic element) {
+      body: ListView.builder(
+        itemBuilder: (context, dynamic index) {
           return Card(
               elevation: 10,
               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -115,16 +34,6 @@ class _FindListviewPageState extends State<FindListviewPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Text(
-                          element['title'],
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Padding(
                         padding: EdgeInsets.only(left: 10, right: 10, top: 5),
                         child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -134,7 +43,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['name']}'),
+                                child: Text('안녕'),
                               ),
                             ]),
                       ),
@@ -148,7 +57,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['date']}'),
+                                child: Text('그래'),
                               ),
                             ]),
                       ),
@@ -162,11 +71,11 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['time']}'),
+                                child: Text('ㅇ러'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['endtime']}'),
+                                child: Text('~ ㅇ'),
                               ),
                             ]),
                       ),
@@ -180,7 +89,7 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['place']}'),
+                                child: Text('ㅇㄹㅇㄴ'),
                               ),
                             ]),
                       ),
@@ -194,11 +103,11 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                   color: Colors.grey, size: 16),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('${element['min']}'),
+                                child: Text('ㅇㄹㄴ'),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10),
-                                child: Text('~ ${element['max']}'),
+                                child: Text('~ ㅇㄹㄴㄷㅊ'),
                               ),
                             ]),
                       ),
@@ -208,12 +117,65 @@ class _FindListviewPageState extends State<FindListviewPage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              TextButton(
+                                child: Text('상세 정보 확인'),
+                                style: TextButton.styleFrom(
+                                  primary: Colors.blueAccent, // Text Color
+                                ),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('상세정보'),
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Container(
+                                              color: Colors.grey[100],
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 10.0,
+                                                vertical: 20.0,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  Text('제목: 4'),
+                                                  Text('세부 사항: 4'),
+                                                  Text('식당 이름: 1'),
+                                                  Text('날짜: 2'),
+                                                  Text('시간: 3'),
+                                                  Text('인원: 4'),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop(true);
+                                            },
+                                            child: Text('OK'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                               ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.blueAccent, // Background color
+                                    onPrimary: Colors.white, // Text Color (Foreground color)
+                                  ),
                                   onPressed: () {
                                     showDialog(
                                       context: context,
                                       barrierDismissible:
-                                          false, // 다이얼로그 이외의 바탕 눌러도 안꺼지도록 설정
+                                      false, // 다이얼로그 이외의 바탕 눌러도 안꺼지도록 설정
                                       builder: (BuildContext context) {
                                         return AlertDialog(
                                           title: Text('확인창'),
@@ -244,19 +206,14 @@ class _FindListviewPageState extends State<FindListviewPage> {
                                     );
                                   },
                                   child: Text("신청")),
+
                             ]),
 
                       ),
 
                     ]),
-              ),);
-
-          },
-        itemComparator: (item1, item2) =>
-            item1['title'].compareTo(item2['title']), // optional
-        useStickyGroupSeparators: true, // optional
-        floatingHeader: true, // optional
-        order: GroupedListOrder.DESC, // optional
+              ));
+        },
       ),
     );
   }

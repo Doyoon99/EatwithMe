@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:ffi';
 
 
-import 'package:eat_with_me/widget/input_data.dart';
+import 'package:eat_with_me/model/input_data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';

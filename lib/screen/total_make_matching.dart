@@ -1,4 +1,4 @@
-import 'package:eat_with_me/widget/input_data.dart';
+import 'package:eat_with_me/model/input_data.dart';
 import 'package:eat_with_me/widget/step_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -108,7 +108,7 @@ class _TotalMakeMatchingState extends State<TotalMakeMatching> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
+          automaticallyImplyLeading: false,
         title: GestureDetector(
           onTap: () {
             print("click");
@@ -141,7 +141,7 @@ class _TotalMakeMatchingState extends State<TotalMakeMatching> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GroupListviewPage()),
+                      builder: (context) => ApplicationListview()),
                 );
               },
               icon: Icon(Icons.perm_identity_outlined)),
@@ -152,7 +152,7 @@ class _TotalMakeMatchingState extends State<TotalMakeMatching> {
         child: Column(
           children: <Widget>[
             Container(
-              color: Colors.indigo,
+              color: Colors.blue[900],
               width: double.infinity,
               height: 80.0,
               child: Row(

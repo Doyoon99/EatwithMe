@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import '../pages/home_page.dart';
-import '../widget/user.dart';
+import '../model/user.dart';
 import 'register.dart';
 
 class Login extends StatefulWidget {
