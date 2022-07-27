@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'googlemap_page.dart';
+import '../widget/googlemap_page.dart';
 import 'application_listview.dart';
 
 class Homescreen extends StatelessWidget {
@@ -12,6 +12,7 @@ class Homescreen extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+          automaticallyImplyLeading: false,
         title: GestureDetector(
           onTap: () {
             print("click");
@@ -43,7 +44,7 @@ class Homescreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => GroupListviewPage()),
+                  MaterialPageRoute(builder: (context) => ApplicationListview()),
                 );
               },
               icon: Icon(Icons.perm_identity_outlined)),

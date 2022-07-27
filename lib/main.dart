@@ -1,7 +1,7 @@
 
 import 'package:eat_with_me/screen/login.dart';
 import 'package:eat_with_me/screen/register.dart';
-import 'package:eat_with_me/widget/input_data.dart';
+import 'package:eat_with_me/model/input_data.dart';
 import 'package:eat_with_me/widget/theme.dart';
 import 'package:flutter/material.dart';
 

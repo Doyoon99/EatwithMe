@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
-import 'input_data.dart';
+import '../model/input_data.dart';
 
 
 
