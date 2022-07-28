@@ -24,4 +24,9 @@ public interface StoreMapper {
     @Select("SELECT * FROM store WHERE store_id=#{store_id}")
     @ResultMap("StoreMap")
     Storedata getById(@Param("store_id") int id);
+
+    @Select("SELECT * FROM store ORDER BY RAND() LIMIT 15")
+    @ResultMap("StoreMap")
+    List<Storedata> storeRandom();
+
 }

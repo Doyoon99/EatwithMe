@@ -95,6 +95,8 @@ public class ewmController {
         promiseinfodata.setTitle(title);
         promiseinfodata.setDetail(detail);
 
+        //promiseinfoMapper.insert(promiseinfodata);
+
         return promiseinfodata;
     }
 }

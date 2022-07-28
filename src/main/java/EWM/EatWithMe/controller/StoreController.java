@@ -29,4 +29,9 @@ public class StoreController {
     public Storedata getById(@PathVariable("store_id") int store_id){
         return storeMapper.getById(store_id);
     }
+
+    @GetMapping("/random")
+    public List<Storedata> getRandom() {return storeMapper.storeRandom();}
+
+
 }
