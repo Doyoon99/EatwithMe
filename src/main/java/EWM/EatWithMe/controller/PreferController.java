@@ -14,13 +14,8 @@ public class PreferController {
     @Autowired
     private PreferMapper preferMapper;
 
-    @GetMapping("/save")
-    public boolean post(@RequestParam String user_id, @RequestParam int store_id, @RequestParam int rating) {
-
-        Preferdata prefer = new Preferdata();
-        prefer.setUser_id(user_id);
-        prefer.setStore_id(store_id);
-        prefer.setRating(rating);
+    @PostMapping("")
+    public boolean post(@RequestBody Preferdata prefer) {
 
         preferMapper.insert(prefer);
 

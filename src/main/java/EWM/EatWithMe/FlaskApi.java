@@ -29,7 +29,7 @@ public class FlaskApi {
     @Autowired
     private PreferMapper preferMapper;
 
-    @RequestMapping("/rec/{user_id}")
+    @GetMapping("/rec/{user_id}")
     public FlaskResponseDto requestToFlask(@PathVariable("user_id") int userid) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:5000/tospring";
