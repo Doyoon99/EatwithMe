@@ -14,15 +14,17 @@ public class PreferController {
     @Autowired
     private PreferMapper preferMapper;
 
-    @PostMapping("")
-    public Preferdata post(@RequestBody Preferdata prefer) {
-        
-        // 기존에 있는 데이터인지 확인하고, 기존에 존재하는 데이터이면 삭제하고 덮어쓰기.
-        // 아니면 timestamp 받고 python에서 그냥 중복처리 해버리는것도 편할 듯.
+    @GetMapping("/save")
+    public boolean post(@RequestParam String user_id, @RequestParam int store_id, @RequestParam int rating) {
+
+        Preferdata prefer = new Preferdata();
+        prefer.setUser_id(user_id);
+        prefer.setStore_id(store_id);
+        prefer.setRating(rating);
 
         preferMapper.insert(prefer);
 
-        return prefer;
+        return true;
     }
 
     @GetMapping("")
