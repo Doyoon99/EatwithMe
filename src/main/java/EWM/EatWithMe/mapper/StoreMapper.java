@@ -1,5 +1,6 @@
 package EWM.EatWithMe.mapper;
 
+import EWM.EatWithMe.FlaskResponseDto;
 import EWM.EatWithMe.domain.Storedata;
 import org.apache.ibatis.annotations.*;
 
@@ -25,8 +26,10 @@ public interface StoreMapper {
     @ResultMap("StoreMap")
     Storedata getById(@Param("store_id") int id);
 
-    @Select("SELECT * FROM store ORDER BY RAND() LIMIT 15")
-    @ResultMap("StoreMap")
-    List<Storedata> storeRandom();
+    @Select("SELECT store_name FROM store ORDER BY RAND() LIMIT 5")
+    @Results(id = "store_random", value = {
+            @Result(property = "item", column = "store_name")
+    })
+    List<String> storeRandom();
 
 }

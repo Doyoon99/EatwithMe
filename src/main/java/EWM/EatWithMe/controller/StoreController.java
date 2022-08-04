@@ -1,5 +1,6 @@
 package EWM.EatWithMe.controller;
 
+import EWM.EatWithMe.FlaskResponseDto;
 import EWM.EatWithMe.domain.Storedata;
 import EWM.EatWithMe.mapper.StoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class StoreController {
     }
 
     @GetMapping("/random")
-    public List<Storedata> getRandom() {return storeMapper.storeRandom();}
+    public FlaskResponseDto getRandom() {return new FlaskResponseDto(storeMapper.storeRandom());}
 
 
 }

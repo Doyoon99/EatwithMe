@@ -1,8 +1,12 @@
 package EWM.EatWithMe;
 
 import EWM.EatWithMe.controller.PreferController;
+import EWM.EatWithMe.controller.StoreController;
 import EWM.EatWithMe.domain.Preferdata;
+import EWM.EatWithMe.domain.Storedata;
 import EWM.EatWithMe.mapper.PreferMapper;
+import EWM.EatWithMe.mapper.StoreMapper;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,8 @@ public class FlaskApi {
 
     @Autowired
     private PreferMapper preferMapper;
+    @Autowired
+    private StoreMapper storemapper;
 
     @GetMapping("/rec/{user_id}")
     public FlaskResponseDto requestToFlask(@PathVariable("user_id") int userid) throws Exception {
@@ -70,19 +76,22 @@ public class FlaskApi {
         body.add("item", item_idx);
         body.add("rating", rating_idx);
 
+
+        //파이썬 서버 실행 가능하면 여기부터
         // Combine Message
-        HttpEntity<?> requestMessage = new HttpEntity<>(body, httpHeaders);
+//        HttpEntity<?> requestMessage = new HttpEntity<>(body, httpHeaders);
+//
+//        // Request and getResponse
+//
+//        HttpEntity<String> response = restTemplate.postForEntity(url, requestMessage, String.class);
+//        //HttpEntity<String> response = restTemplate.getForEntity(tmpurl, String.class);
+//        // Response Body 파싱
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+//        FlaskResponseDto dto = objectMapper.readValue(response.getBody(), FlaskResponseDto.class);
+        // 여기까지 실행하면 됨. 이 이후로는 삭제.
 
-        // Request and getResponse
-        HttpEntity<String> response = restTemplate.postForEntity(url, requestMessage, String.class);
-        //HttpEntity<String> response = restTemplate.getForEntity(url, String.class);
-        // Response Body 파싱
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
-        FlaskResponseDto dto = objectMapper.readValue(response.getBody(), FlaskResponseDto.class);
-
-        //System.out.println("test");
-
-        return dto;
+        //return dto
+        return new FlaskResponseDto(storemapper.storeRandom());
     }
 }
